@@ -6,6 +6,9 @@ const S={view:'calm',open:false,pinned:false,m:{water:78,eyes:62,move:70},speed:
 const hr=new Date().getHours();
 S.tod=hr<11?'morning':hr<17?'day':'evening';
 S.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
-try{const j=JSON.parse(localStorage.getItem(STORE)||'null');if(j){if(j.pos)S.pos=j.pos;if(j.edge)S.edge=j.edge;if(j.on)Object.assign(S.on,j.on)}}catch{}
+try{const j=JSON.parse(localStorage.getItem(STORE)||'null');if(j){
+  if(j.pos&&Number.isFinite(j.pos.x)&&Number.isFinite(j.pos.y)){S.pos={x:j.pos.x,y:j.pos.y};S.homeSet=true}
+  if(['top','left','right','bottom'].includes(j.edge))S.edge=j.edge;
+  if(j.on)for(const k of Object.keys(S.on))if(typeof j.on[k]==='boolean')S.on[k]=j.on[k]}}catch{}
 const save=()=>{try{localStorage.setItem(STORE,JSON.stringify({pos:S.pos,edge:S.edge,on:S.on}))}catch{}};
 

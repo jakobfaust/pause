@@ -1,7 +1,7 @@
 /* ---------- tid og regler ---------- */
 let last=performance.now();
 function tick(){
-  const now=performance.now(),dt=(now-last)/1000;last=now;
+  const now=performance.now(),dt=Math.min(1.5,(now-last)/1000);last=now; /* sovende fane eller computer tæller ikke som tid */
   const dv=dt*S.speed/60; /* virtuelle minutter */
   S.vt+=dv;
   if(!S.ex){for(const k of ['water','eyes','move'])S.m[k]=Math.max(0,S.m[k]-RATE[k]*dv)}

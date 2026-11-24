@@ -4,9 +4,9 @@ function pick(kind){
   const c=pool.filter(e=>EX.indexOf(e)!==S.exLast);const e=c[Math.floor(Math.random()*c.length)]||pool[0];
   S.exLast=EX.indexOf(e);return e;
 }
-function startEx(def){
+function startEx(def,from){
   clearTimeout(S.nTimer);clearTimeout(S.sTimer);
-  S.nudge=null;S.ex={def,t0:performance.now(),dur:def.dur};
+  S.nudge=null;S.ex={def,from,t0:performance.now(),dur:def.dur};
   $('#eName').textContent=def.name;setView('exercise');tickEx();
   if(!S.open)open('user');
 }

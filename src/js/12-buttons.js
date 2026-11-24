@@ -2,20 +2,20 @@
 $('#mbIcon').onclick=()=>{if(!S.open&&S.pending&&S.nudge){S.pending=false;paintPending();open('nudge')}else toggle()};
 peek.onclick=()=>{if(S.nudge){S.pending=false;paintPending();open('nudge')}else open('user')};
 $('#btnHide').onclick=()=>hide();
-$('#btnSet').onclick=()=>{S.nudge&&0;if(S.ex)cancelEx();setView('settings');open('user')};
-$$('[data-back]').forEach(b=>b.onclick=()=>setView('calm'));
-$('#nGo').onclick=()=>{const k=S.nudge.kind;
+$('#btnSet').onclick=()=>{if(S.ex)cancelEx();setView('settings');open('user')};
+$$('[data-back]').forEach(b=>b.onclick=home);
+$('#nGo').onclick=()=>{if(!S.nudge)return;const k=S.nudge.kind;
   if(k==='water'){S.m.water=100;done('Vand fyldt op.')}
-  else if(k==='eyes')startEx(EX.find(e=>e.id==='eyes'));
-  else if(k==='move')startEx(pick('move'));
-  else startEx(EX.find(e=>e.id==='shrug'));};
-$('#nLater').onclick=snooze;
+  else if(k==='eyes')startEx(EX.find(e=>e.id==='eyes'),k);
+  else if(k==='move')startEx(pick('move'),k);
+  else startEx(EX.find(e=>e.id==='shrug'),k);};
+$('#nLater').onclick=()=>{if(S.nudge)snooze()};
 $('#cEx').onclick=()=>startEx(pick('any'));
 $('#cDay').onclick=()=>setView('day');
 $('#sDay').onclick=()=>{clearTimeout(S.sTimer);S.pinned=true;setView('day')};
 $('#sHide').onclick=()=>hide();
 $('#eDone').onclick=()=>finishEx(false);
-$('#eSkip').onclick=()=>{cancelEx();S.pinned?setView('calm'):hide();if(S.pinned)setView('calm')};
+$('#eSkip').onclick=()=>{if(S.ex&&S.ex.from)S.snooze[S.ex.from]=S.vt+10;cancelEx();if(S.pinned)home();else hide()};
 $$('.tg').forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.on[k]=!S.on[k];b.setAttribute('aria-checked',S.on[k]);save()});
 $$('.tg').forEach(b=>b.setAttribute('aria-checked',S.on[b.dataset.k]));
 $('#resetPos').onclick=()=>{S.pos=null;S.homeSet=false;S.edge='top';fit();save();say('Placeringen er nulstillet.')};

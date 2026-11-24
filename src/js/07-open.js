@@ -3,10 +3,9 @@ function open(why){
   clearTimeout(S.sTimer);
   S.open=true;S.pinned=why==='user'||S.pinned&&why!=='nudge';
   if(why==='nudge')S.pinned=false;
-  if(S.nudge)showNudge();
+  if(S.nudge&&why==='nudge')showNudge();
   else if(S.view==='exercise'){}
-  else if(why==='user'&&!['settings','day'].includes(S.view))setView('calm');
-  else if(why==='user'&&S.view==='success')setView('calm');
+  else if(why==='user'&&!['settings','day','success','reset'].includes(S.view))home();
   card.dataset.open='true';card.inert=false;$('#mbIcon').setAttribute('aria-expanded','true');
   fit();paintPeek();paintFigure();
   if(why==='user')requestAnimationFrame(()=>{const b=card.querySelector('[data-v]:not([hidden]) .btn');b&&b.focus({preventScroll:true})});
@@ -23,5 +22,7 @@ function hide(keep){
   if(document.activeElement&&card.contains(document.activeElement))document.activeElement.blur();
   paintPeek();paintPending();
 }
+/* tilbage til udgangsvisningen: en ventende påmindelse går forud for hvile */
+function home(){if(S.nudge)showNudge();else setView('calm')}
 function toggle(){S.open?hide():open('user')}
 
