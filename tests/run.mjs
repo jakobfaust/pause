@@ -47,6 +47,18 @@ ok(await p.evaluate(() => window.__S.keys.length <= 1), 'tast holdt nede tæller
 await p.evaluate(() => localStorage.setItem('pause-proto-v1', JSON.stringify({ pos: { x: 'a', y: null }, edge: 'x' })));
 await p.reload();
 ok(await p.evaluate(() => Number.isFinite(window.__S.pos.x) && window.__S.edge === 'top'), 'ødelagte gemte data ignoreres');
+
+// Tilgængelighed: fokus følger med, når visningen skifter, og vender tilbage ved skjul
+await p.keyboard.press('Control+Alt+Space');
+await p.waitForTimeout(300);
+await p.click('#cEx');
+ok(await p.evaluate(() => document.activeElement && document.activeElement !== document.body && !document.activeElement.closest('[hidden]')), 'fokus bliver synligt efter visningsskift');
+await p.click('#eSkip');
+await p.keyboard.press('Escape');
+ok(await p.evaluate(() => document.activeElement && document.activeElement.id === 'mbIcon'), 'fokus vender tilbage til menulinjeikonet');
+await p.evaluate(() => { const S = window.__S; S.quiet = true; S.m.move = 3; S.snooze.move = 0; });
+await p.waitForFunction(() => window.__S.pending, null, { timeout: 4000 });
+ok((await p.getAttribute('#mbIcon', 'aria-label')).includes('venter'), 'ventende påmindelse står i ikonets navn');
 ok(errs.length === 0, 'stadig ingen konsolfejl ' + errs.join('|'));
 await b.close();
 process.exit(fail ? 1 : 0);

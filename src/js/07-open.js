@@ -19,7 +19,7 @@ function hide(keep){
   S.open=false;S.pinned=false;
   if(S.nudge){if(keep===true){S.pending=true}else{S.snooze[S.nudge.kind]=S.vt+10;S.nudge=null}}
   card.dataset.open='false';card.inert=true;$('#mbIcon').setAttribute('aria-expanded','false');
-  if(document.activeElement&&card.contains(document.activeElement))document.activeElement.blur();
+  if(document.activeElement&&card.contains(document.activeElement)){const mb=$('#mbIcon');if(mb.offsetParent)mb.focus({preventScroll:true});else document.activeElement.blur()}
   paintPeek();paintPending();
 }
 /* tilbage til udgangsvisningen: en ventende påmindelse går forud for hvile */

@@ -5,6 +5,12 @@ function setView(v){
   if(v==='calm'){const d=nextDue();$('#cText').textContent=d?`Næste: ${LABEL[d.k].toLowerCase()} om cirka ${Math.max(1,Math.round(d.m))} min.`:'Alle påmindelser er slået fra.'}
   if(v==='day')renderRows();
   paintFigure();fit();
+  /* hvis fokus lå på noget, der nu er skjult, flyttes det til den nye visnings overskrift */
+  const a=document.activeElement;
+  if(S.open&&a&&a!==document.body&&card.contains(a)&&a.closest('[data-v]')&&a.closest('[data-v]').hidden){
+    const h=card.querySelector('[data-v]:not([hidden]) h2');
+    if(h){h.tabIndex=-1;h.focus({preventScroll:true})}
+  }
 }
 function renderRows(){
   const rows=[['water','Vand','Drak vand',()=>{S.m.water=100;done('Vand fyldt op.')}],['eyes','Øjne','Kig væk',()=>startEx(EX.find(e=>e.id==='eyes'))],['move','Bevægelse','Start øvelse',()=>startEx(pick('move'))]];
@@ -37,5 +43,9 @@ function edgeAway(){
   if(e==='bottom')peek.style.left=clamp(cx-26,8,W-60)+'px';
 }
 function paintPeek(){peek.classList.toggle('show',!S.open&&!S.fs)}
-function paintPending(){app.dataset.pending=S.pending?'1':'0'}
+function paintPending(){
+  app.dataset.pending=S.pending?'1':'0';
+  $('#mbIcon').setAttribute('aria-label',S.pending?'Pause-figuren. En påmindelse venter.':'Pause-figuren, åbn eller skjul');
+  peek.setAttribute('aria-label',S.pending?'Åbn Pause-figuren. En påmindelse venter.':'Åbn Pause-figuren');
+}
 
