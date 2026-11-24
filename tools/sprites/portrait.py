@@ -159,15 +159,19 @@ def build_layers(mood):
         put(x0 + 7, ey + 2, SK[3]); put(x0 - 1, ey + 2, SK[3])
 
     def eye_tired(x0):
+        # halvt lukket øje: tykt låg, smal øjenspalte, mørke poser under
         for xx in range(7):
             put(x0 + xx, ey + 1, OUT)
         for xx in range(1, 6):
-            put(x0 + xx, ey + 2, WHITE)
-            put(x0 + xx, ey + 3, WHITE if xx in (1, 5) else IRIS)
-        put(x0 + 3, ey + 2, IRIS); put(x0 + 2, ey + 2, IRIS); put(x0 + 4, ey + 2, IRIS)
+            put(x0 + xx, ey + 2, SK[2])
+        put(x0, ey + 2, OUT); put(x0 + 6, ey + 2, OUT)
         for xx in range(1, 6):
-            put(x0 + xx, ey + 5, BAG)
-        put(x0 + 6, ey + 1, OUT)
+            put(x0 + xx, ey + 3, IRIS if xx in (2, 3, 4) else WHITE)
+        put(x0 + 3, ey + 3, OUT)
+        for xx in range(1, 6):
+            put(x0 + xx, ey + 4, SK[3] if xx in (1, 5) else SK[2])
+        for xx in range(0, 7):
+            put(x0 + xx, ey + 5, SK[3] if 0 < xx < 6 else SK[2])
 
     def brow(x0, rise, tilt):
         # tilt: -1 indad-ned, 0 flad, 1 indad-op
