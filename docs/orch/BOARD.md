@@ -1,24 +1,17 @@
-# Tavle: Pause
+# Pause – status
 
-## Status
-(Skrives af Orkestratoren ved ændring.)
+Opdateret 2026-11-24. Prototypen er færdig og på `main`.
 
-## Kræver din opmærksomhed
-(Spejler portalens boks. Bruges kun, hvis portalen ikke kan bruges.)
+## Hvor er vi
+- Interaktiv browserprototype: færdig, gennemgået, 17 tests grønne. Privat artefakt "Pause – interaktiv prototype".
+- Native Mac-app: ikke startet.
 
-## Kan arkiveres
-(Sessioner, der er FÆRDIG, merget og uden åbne spørgsmål.)
+## Næste skridt (besluttet)
+Native proof of concept: glasvindue der glider ind fra menulinjen, kan trækkes, åbnes med Control+Option+Mellemrum, én måler, én øvelse. Ingen kode endnu.
 
-## Til brugeren
-(Forslag, fx opdatering af andre projekter, og ting der venter på adgange eller fakta.)
+## Besluttet
+- Knapper: Har drukket, Slip skuldrene, Start nedtælling, Vis en øvelse, Afslut øvelse.
+- Fuldskærm viser en lille fane ved ventende påmindelse.
 
-## Forbrug
-(Én linje pr. fase med samlet forbrug, når sessionsværktøjerne oplyser det.)
-
-
-## Status 2026-11-24
-Alle faser (opsætning, adfærd, tilgængelighed, figur, tekst/kvalitet) er gennemført på gren `pau/opsaetning`. Se `HANDOVER.md`.
-
-### Til brugeren
-- Ja/nej til at merge `pau/opsaetning` til `main`.
-- Knaptekster er besluttet: "Har drukket", "Slip skuldrene", "Start nedtælling", "Vis en øvelse", "Afslut øvelse".
+## Kendt, ikke løst
+Flere skærme, Safari og rigtige enheder er ikke testet. Se `HANDOVER.md`.

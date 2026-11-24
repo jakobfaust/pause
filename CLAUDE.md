@@ -5,7 +5,7 @@ Interaktiv browserprototype af Pause, en Mac-tamagotchi der i al hemmelighed min
 ## Læs først
 1. `PRODUCT.md` (formål, tone, Faust-standard og afvigelser)
 2. `DESIGN.md` (farver, typografi, figur, bevægelse)
-3. `docs/orch/BOARD.md` og `docs/orch/STATE.md` (status)
+3. `docs/orch/BOARD.md` (status og næste skridt)
 
 ## Regler
 - Dansk, du-form, korte konkrete tekster. Knapper er verber. Ingen emoji som UI.
@@ -27,4 +27,4 @@ Interaktiv browserprototype af Pause, en Mac-tamagotchi der i al hemmelighed min
 - `src/js/NN-*.js` – kode i sektioner, sammensat i rækkefølge til ét script af `tools/build.mjs`
 - `tools/sprites/` – generator til figur og rum
 - `assets/fonts/` – selvhostede WOFF2 (DM Sans, Instrument Serif)
-- `docs/orch/` – orkestrering og status
+- `docs/orch/` – BOARD, PLAN, DECISIONS, HANDOVER (resten ligger i `arkiv/`)
