@@ -14,3 +14,11 @@
 
 ## Forbrug
 (Én linje pr. fase med samlet forbrug, når sessionsværktøjerne oplyser det.)
+
+
+## Status 2026-11-24
+Alle faser (opsætning, adfærd, tilgængelighed, figur, tekst/kvalitet) er gennemført på gren `pau/opsaetning`. Se `HANDOVER.md`.
+
+### Til brugeren
+- Ja/nej til at merge `pau/opsaetning` til `main`.
+- Beslut knaptekster ("Drak vand", "Færdig").
