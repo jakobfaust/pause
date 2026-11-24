@@ -8,10 +8,10 @@ const EX=[
  {id:'walk',name:'Gå en lille tur',dur:45,anim:'walk',effect:'move',steps:['Rejs dig op.','Gå hen til vinduet eller køkkenet.','Tag et glas vand med tilbage.']}
 ];
 const NUDGE={
- water:{t:'Tid til et glas vand.',x:'Koppen er tom. Tag et glas, så er du klar til næste stykke.',go:'Drak vand'},
- eyes:{t:'Kig væk et øjeblik.',x:'Find noget langt væk, og se på det i 20 sekunder.',go:'Start 20 sekunder'},
- move:{t:'Tid til at rejse dig.',x:'Dine ben har siddet længe. Et kort stræk hjælper mere, end du tror.',go:'Vis mig en øvelse'},
- tense:{t:'Slip skuldrene.',x:'Du har skrevet hårdt et stykke tid. Lad dem falde ned, og pust ud.',go:'Skuldrene ned'}
+ water:{t:'Tid til et glas vand.',x:'Koppen er tom. Tag et glas, så er du klar til næste stykke.',go:'Har drukket'},
+ eyes:{t:'Kig væk et øjeblik.',x:'Find noget langt væk, og se på det i 20 sekunder.',go:'Start nedtælling'},
+ move:{t:'Tid til at rejse dig.',x:'Dine ben har siddet længe. Et kort stræk hjælper mere, end du tror.',go:'Vis en øvelse'},
+ tense:{t:'Slip skuldrene.',x:'Du har skrevet hårdt et stykke tid. Lad dem falde ned, og pust ud.',go:'Slip skuldrene'}
 };
 const RATE={water:100/90,eyes:100/20,move:100/60}; /* point pr. virtuelt minut */
 const LABEL={water:'Vand',eyes:'Øjne',move:'Bevægelse'};

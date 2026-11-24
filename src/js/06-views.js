@@ -13,7 +13,7 @@ function setView(v){
   }
 }
 function renderRows(){
-  const rows=[['water','Vand','Drak vand',()=>{S.m.water=100;done('Vand fyldt op.')}],['eyes','Øjne','Kig væk',()=>startEx(EX.find(e=>e.id==='eyes'))],['move','Bevægelse','Start øvelse',()=>startEx(pick('move'))]];
+  const rows=[['water','Vand','Har drukket',()=>{S.m.water=100;done('Vand fyldt op.')}],['eyes','Øjne','Kig væk',()=>startEx(EX.find(e=>e.id==='eyes'))],['move','Bevægelse','Start øvelse',()=>startEx(pick('move'))]];
   const html=rows.map(r=>{const [c,t]=state(r[0]);return `<div class="row"><div class="top"><b>${r[1]}</b><span class="tag ${c}">${t}</span></div><button class="btn sec small act" data-act="${r[0]}">${r[2]}</button><span class="s">${S.on[r[0]]?sentence(r[0]):'Slået fra.'}</span></div>`}).join('')+
    `<div class="row"><div class="top"><b>Fokus</b></div><span class="s">${performance.now()<S.tenseUntil?'Du er i dybt flow. Husk skuldrene.':'Roligt tempo.'}</span></div>`;
   if(renderRows.h!==html){const ae=document.activeElement,act=ae&&ae.dataset&&ae.dataset.act&&$('#rows').contains(ae)?ae.dataset.act:null;

@@ -21,4 +21,4 @@ Alle faser (opsætning, adfærd, tilgængelighed, figur, tekst/kvalitet) er genn
 
 ### Til brugeren
 - Ja/nej til at merge `pau/opsaetning` til `main`.
-- Beslut knaptekster ("Drak vand", "Færdig").
+- Knaptekster er besluttet: "Har drukket", "Slip skuldrene", "Start nedtælling", "Vis en øvelse", "Afslut øvelse".

@@ -18,7 +18,7 @@ Ingen. Prototypen er et privat artefakt. Skal den på et domæne, så er det en 
 - Uafhængig reviewer (separat agent) testede den byggede side; 10 af 15 fund rettet.
 
 ## Åbne punkter
-- Knaptekster "Drak vand" og "Færdig": beslut endeligt.
+- Knaptekster er besluttet 24. nov. (se PRODUCT.md).
 - Fuldskærm viser nu en lille fane ved ventende nudge; bekræft at det er ønsket.
 - Ikke rettet fra review: kassen om at gemt position kan overskrives af en midlertidigt lille skærm; kontakternes kant er hævet til ca. 3:1, men ikke målt med værktøj.
 - Flere skærme er ikke modelleret i prototypen (kun beskrevet i konceptet).
