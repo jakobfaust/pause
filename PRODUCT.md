@@ -14,7 +14,7 @@ Folk der sidder længe ved en skærm (designere, udviklere, kontorarbejde). Før
 
 ## Faust-standard
 - Projekttype: app/værktøj (Operate). Prototype som én HTML-fil; målet er en native Mac-app.
-- Sprog og tone: dansk, du-form, rolig og lun. Eksempler: knap "Drak vand"; nudge "Tid til et glas vand."; tom tilstand "Alle påmindelser er slået fra."; bekræftelse "Vand fyldt op."; nulstil "Slet gemte indstillinger?"
+- Sprog og tone: dansk, du-form, rolig og lun. Eksempler: knap "Drak vand"; nudge "Tid til et glas vand."; tom tilstand "Alle påmindelser er slået fra."; bekræftelse "Vand fyldt op."; nulstil "Nulstil alle data?"
 - Hosting og deploy: privat artefakt, ingen deploy.
 - Data og roller: ingen login, ingen persondata sendt noget sted. Kun indstillinger i localStorage. Kamera er kun simuleret i prototypen.
 - Særlige krav: ingen tracking, ingen tredjepartsfonte (alt selvhostet).

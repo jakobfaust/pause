@@ -10,7 +10,7 @@ function startEx(def,from){
   $('#eName').textContent=def.name;setView('exercise');tickEx();
   if(!S.open)open('user');
 }
-function cancelEx(){S.ex=null;S.happyUntil=0;paintFigure()}
+function cancelEx(){if(S.ex&&S.ex.from)S.snooze[S.ex.from]=S.vt+10;S.ex=null;S.happyUntil=0;paintFigure()}
 function tickEx(){
   if(!S.ex)return;
   const e=S.ex,t=(performance.now()-e.t0)/1000,left=e.dur-t,f=clamp(t/e.dur,0,1);

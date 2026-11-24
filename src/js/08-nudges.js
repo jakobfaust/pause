@@ -10,6 +10,7 @@ function deliver(kind){
   S.nudge={kind};S.lastNudge=S.vt;
   if(kind==='tense'){S.tenseUntil=performance.now()+90000}
   if(S.quiet||S.fs){S.pending=true;paintPending();say(S.quiet?'Møde i gang. Påmindelsen venter.':'Fuldskærm. Påmindelsen venter.');return}
+  if(S.open&&['settings','reset','day'].includes(S.view)){S.pending=true;paintPending();return}
   open('nudge');
 }
 function releasePending(){
@@ -29,5 +30,6 @@ function done(msg){
   setView('success');
   if(!S.open)open('user');
   if(!S.pinned){clearTimeout(S.sTimer);S.sTimer=setTimeout(()=>{if(S.view==='success'&&!card.matches(':hover,:focus-within'))hide();else S.sTimer=setTimeout(hide,4000)},5000)}
+  $('#live').textContent='';setTimeout(()=>{$('#live').textContent='Godt gået. '+$('#sText').textContent},50)
 }
 

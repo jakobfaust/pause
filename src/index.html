@@ -15,7 +15,7 @@
     <header class="menubar" id="menubar">
       <div class="l"><span>Skrivebord</span><span>Arkiv</span><span>Rediger</span></div>
       <div class="r">
-        <button class="mbicon" id="mbIcon" aria-label="Pause-figuren, åbn eller skjul" aria-expanded="false" aria-controls="card">
+        <button class="mbicon" id="mbIcon" aria-label="Pause-figuren" aria-expanded="false" aria-controls="card">
           <svg viewBox="0 0 12 12" aria-hidden="true" id="mbSvg"></svg><i class="dot"></i>
         </button>
         <span class="num" id="clock">22.50</span>
@@ -52,7 +52,7 @@ Prøv at skrive hurtigt og uden pauser et stykke tid. Det tæller som intenst ar
         <div data-v="nudge">
           <h2 id="nTitle"></h2><p class="lead" id="nText"></p>
           <div class="btns"><button class="btn" id="nGo"></button><button class="btn sec" id="nLater">Udsæt 10 min</button></div>
-          <p class="keys">Esc skjuler figuren.</p>
+          <p class="keys">Esc skjuler figuren og udsætter påmindelsen 10 min.</p>
         </div>
 
         <div data-v="calm">
@@ -64,14 +64,14 @@ Prøv at skrive hurtigt og uden pauser et stykke tid. Det tæller som intenst ar
         <div data-v="day">
           <h2>Din dag</h2>
           <div class="rows" id="rows"></div>
-          <div class="btns"><button class="btn sec" data-back>Tilbage</button></div>
+          <div class="btns"><button class="btn sec" data-back>Gå tilbage</button></div>
         </div>
 
         <div data-v="exercise">
           <h2 id="eName"></h2>
           <p class="step" id="eStep" aria-live="polite"></p>
           <div class="timer"><span class="t" id="eTime" role="timer" aria-label="Tid tilbage">0:30</span><div class="prog" role="progressbar" aria-label="Fremdrift" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="eProg"><i id="eBar"></i></div></div>
-          <div class="btns"><button class="btn" id="eDone">Jeg er færdig</button><button class="btn sec" id="eSkip">Spring over</button></div>
+          <div class="btns"><button class="btn" id="eDone">Færdig</button><button class="btn sec" id="eSkip">Spring over</button></div>
           <p class="note">Stop, hvis noget gør ondt.</p>
         </div>
 
@@ -90,11 +90,11 @@ Prøv at skrive hurtigt og uden pauser et stykke tid. Det tæller som intenst ar
           </div>
           <div class="grp"><h3>Placering</h3><div class="btns" style="margin-top:6px"><button class="btn sec small" id="resetPos">Nulstil placering</button></div></div>
           <div class="grp"><h3>Kamera</h3>
-            <div class="cam"><p class="msg" id="camMsg">Kommer senere: dit ansigt som pixelfigur og tjek af kropsholdning. Alt bliver på din Mac, og der gemmes aldrig billeder.</p>
+            <div class="cam"><p class="msg" id="camMsg" role="status">Kommer senere: dit ansigt som pixelfigur og tjek af kropsholdning. Alt bliver på din Mac, og der gemmes aldrig billeder.</p>
               <div class="btns" style="margin-top:0"><button class="btn sec small" id="camTry">Prøv at slå kamera til</button></div></div>
           </div>
           <div class="grp"><h3>Data</h3><div class="btns" style="margin-top:6px"><button class="btn sec small" id="toReset">Nulstil data</button></div></div>
-          <div class="btns"><button class="btn" data-back>Tilbage</button></div>
+          <div class="btns"><button class="btn" data-back>Gå tilbage</button></div>
         </div>
 
         <div data-v="reset">

@@ -14,9 +14,12 @@ function setView(v){
 }
 function renderRows(){
   const rows=[['water','Vand','Drak vand',()=>{S.m.water=100;done('Vand fyldt op.')}],['eyes','Øjne','Kig væk',()=>startEx(EX.find(e=>e.id==='eyes'))],['move','Bevægelse','Start øvelse',()=>startEx(pick('move'))]];
-  $('#rows').innerHTML=rows.map(r=>{const [c,t]=state(r[0]);return `<div class="row"><div class="top"><b>${r[1]}</b><span class="tag ${c}">${t}</span></div><button class="btn sec small act" data-act="${r[0]}">${r[2]}</button><span class="s">${S.on[r[0]]?sentence(r[0]):'Slået fra.'}</span></div>`}).join('')+
+  const html=rows.map(r=>{const [c,t]=state(r[0]);return `<div class="row"><div class="top"><b>${r[1]}</b><span class="tag ${c}">${t}</span></div><button class="btn sec small act" data-act="${r[0]}">${r[2]}</button><span class="s">${S.on[r[0]]?sentence(r[0]):'Slået fra.'}</span></div>`}).join('')+
    `<div class="row"><div class="top"><b>Fokus</b></div><span class="s">${performance.now()<S.tenseUntil?'Du er i dybt flow. Husk skuldrene.':'Roligt tempo.'}</span></div>`;
-  $$('#rows [data-act]').forEach(b=>b.onclick=()=>rows.find(r=>r[0]===b.dataset.act)[3]());
+  if(renderRows.h!==html){const ae=document.activeElement,act=ae&&ae.dataset&&ae.dataset.act&&$('#rows').contains(ae)?ae.dataset.act:null;
+    renderRows.h=html;$('#rows').innerHTML=html;
+    $$('#rows [data-act]').forEach(b=>b.onclick=()=>rows.find(r=>r[0]===b.dataset.act)[3]());
+    if(act){const n=$(`#rows [data-act="${act}"]`);n&&n.focus({preventScroll:true})}}
 }
 function fit(){
   const W=desk.clientWidth,H=desk.clientHeight,w=card.offsetWidth,h=card.offsetHeight;
@@ -42,10 +45,10 @@ function edgeAway(){
   if(e==='left'||e==='right')peek.style.top=clamp(cy-30,40,H-70)+'px';
   if(e==='bottom')peek.style.left=clamp(cx-26,8,W-60)+'px';
 }
-function paintPeek(){peek.classList.toggle('show',!S.open&&!S.fs)}
+function paintPeek(){peek.classList.toggle('show',!S.open&&(!S.fs||S.pending))}
 function paintPending(){
-  app.dataset.pending=S.pending?'1':'0';
-  $('#mbIcon').setAttribute('aria-label',S.pending?'Pause-figuren. En påmindelse venter.':'Pause-figuren, åbn eller skjul');
+  app.dataset.pending=S.pending?'1':'0';paintPeek();
+  $('#mbIcon').setAttribute('aria-label',S.pending?'Pause-figuren. En påmindelse venter.':'Pause-figuren');
   peek.setAttribute('aria-label',S.pending?'Åbn Pause-figuren. En påmindelse venter.':'Åbn Pause-figuren');
 }
 

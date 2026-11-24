@@ -59,6 +59,22 @@ ok(await p.evaluate(() => document.activeElement && document.activeElement.id ==
 await p.evaluate(() => { const S = window.__S; S.quiet = true; S.m.move = 3; S.snooze.move = 0; });
 await p.waitForFunction(() => window.__S.pending, null, { timeout: 4000 });
 ok((await p.getAttribute('#mbIcon', 'aria-label')).includes('venter'), 'ventende påmindelse står i ikonets navn');
+
+// Review-fund: Din dag mister ikke fokus; afbrudt øvelse udsætter; ventende uden nudge rydder badge
+await p.reload();
+await p.evaluate(() => { const S = window.__S; S.speed = 240; });
+await p.keyboard.press('Control+Alt+Space'); await p.waitForTimeout(300);
+await p.click('#cDay'); await p.focus('#rows [data-act=water]'); await p.waitForTimeout(1600);
+ok(await p.evaluate(() => document.activeElement && document.activeElement.dataset.act === 'water'), 'Din dag beholder fokus på rækkeknap');
+await p.evaluate(() => { const S = window.__S; S.on.eyes = true; S.m.eyes = 4; S.snooze.eyes = 0; S.lastNudge = -99; });
+await p.waitForTimeout(600);
+ok(await p.evaluate(() => window.__S.nudge && window.__S.nudge.kind === 'eyes' ? window.__S.pending && window.__S.view === 'day' : true), 'nudge griber ikke ind i Din dag');
+await p.reload();
+await p.keyboard.press('Control+Alt+Space'); await p.waitForTimeout(300);
+await p.evaluate(() => { const S = window.__S; S.m.eyes = 4; S.snooze.eyes = 0; });
+await p.waitForFunction(() => window.__S.nudge && window.__S.view === 'nudge', null, { timeout: 4000 });
+await p.click('#nGo'); await p.keyboard.press('Escape');
+ok(await p.evaluate(() => window.__S.snooze.eyes > window.__S.vt), 'afbrudt øvelse udsætter nudgen');
 ok(errs.length === 0, 'stadig ingen konsolfejl ' + errs.join('|'));
 await b.close();
 process.exit(fail ? 1 : 0);

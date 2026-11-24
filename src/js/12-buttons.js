@@ -15,7 +15,7 @@ $('#cDay').onclick=()=>setView('day');
 $('#sDay').onclick=()=>{clearTimeout(S.sTimer);S.pinned=true;setView('day')};
 $('#sHide').onclick=()=>hide();
 $('#eDone').onclick=()=>finishEx(false);
-$('#eSkip').onclick=()=>{if(S.ex&&S.ex.from)S.snooze[S.ex.from]=S.vt+10;cancelEx();if(S.pinned)home();else hide()};
+$('#eSkip').onclick=()=>{cancelEx();if(S.pinned)home();else hide()};
 $$('.tg').forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.on[k]=!S.on[k];b.setAttribute('aria-checked',S.on[k]);save()});
 $$('.tg').forEach(b=>b.setAttribute('aria-checked',S.on[b.dataset.k]));
 $('#resetPos').onclick=()=>{S.pos=null;S.homeSet=false;S.edge='top';fit();save();say('Placeringen er nulstillet.')};
@@ -23,6 +23,6 @@ $('#toReset').onclick=()=>setView('reset');
 $('#rCancel').onclick=()=>setView('settings');
 $('#rDo').onclick=()=>{try{localStorage.removeItem(STORE)}catch{}S.pos=null;S.homeSet=false;Object.assign(S.on,{water:true,eyes:true,move:true,tense:true});$$('.tg').forEach(b=>b.setAttribute('aria-checked','true'));fit();setView('calm');say('Dine data er nulstillet.')};
 $('#camTry').onclick=()=>{
-  const m=$('#camMsg'),b=$('#camTry');b.disabled=true;m.className='msg';m.innerHTML='<span class="spin"></span>Beder om adgang til kameraet …';
-  setTimeout(()=>{m.className='msg err';m.textContent='Adgang afvist. Åbn Systemindstillinger, vælg Anonymitet og sikkerhed, og tillad kameraet for Pause. Der er ikke gemt noget.';b.disabled=false;b.textContent='Prøv igen'},1400)};
+  const m=$('#camMsg'),b=$('#camTry');if(b.getAttribute('aria-disabled')==='true')return;b.setAttribute('aria-disabled','true');m.className='msg';m.innerHTML='<span class="spin"></span>Beder om adgang til kameraet …';
+  setTimeout(()=>{m.className='msg err';m.textContent='Adgang afvist. Åbn Systemindstillinger, vælg Anonymitet og sikkerhed, og tillad kameraet for Pause. Der er ikke gemt noget.';b.removeAttribute('aria-disabled');b.textContent='Prøv igen'},1400)};
 
